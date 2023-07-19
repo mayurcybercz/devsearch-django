@@ -1,0 +1,11 @@
+{%extends 'main.html'%}
+{% block content%}
+<p>Welcome to the {{page}} page</p>
+<ul>
+    {%for project in projectslist%}
+    <!-- <li>Title :<a href="/project/{{project.id}}"> {{project.title}}</a></li> -->
+    <li>{{project.id}} :<a href="{% url 'project' project.id %}"> {{project.title}}</a></li>
+    {%endfor%}
+</ul>
+
+{%endblock content%}
