@@ -4,7 +4,7 @@
 <ul>
     {%for project in projectslist%}
     <!-- <li>Title :<a href="/project/{{project.id}}"> {{project.title}}</a></li> -->
-    <li>{{project.id}} :<a href="{% url 'project' project.id %}"> {{project.title}}</a></li>
+    <li>Project {{project.id}} :<a href="{% url 'project' project.id %}"> {{project.title}}</a></li>
     {%endfor%}
 </ul>
 
