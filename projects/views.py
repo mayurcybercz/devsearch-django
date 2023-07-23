@@ -11,15 +11,15 @@ def projects(request):
     return render(request,'projects/projects.html',context)
 
 def project(request,pk):
-    projectObj=Project.objects.get(id=pk)
-    tags=projectObj.tags.all()
-    context={'projectObj':projectObj,'tags':tags}
+    project=Project.objects.get(id=pk)
+    tags=project.tags.all()
+    context={'project':project,'tags':tags}
     return render(request,'projects/single-project.html',context)
 
 def createProject(request):
     form = ProjectForm()
     if request.method == 'POST':
-        form=ProjectForm(request.POST)
+        form=ProjectForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('projects')
@@ -30,7 +30,7 @@ def updateProject(request,pk):
     project=Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
     if request.method == 'POST':
-        form=ProjectForm(request.POST,instance=project)
+        form=ProjectForm(request.POST,request.FILES,instance=project)
         if form.is_valid():
             form.save()
             return redirect('projects')
