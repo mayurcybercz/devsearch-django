@@ -4,8 +4,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 from .models import Profile
+from .forms import customUserCreationForm
 
 def loginUser(request):
+    page='login'
+    context={'page':page}
     if request.user.is_authenticated:
         return render('profiles')
     if request.method == 'POST':
@@ -23,12 +26,32 @@ def loginUser(request):
             return redirect('profiles')
         else:
             messages.error(request,'Username OR password is incorrect')
-    return render(request,'users/login_register.html')
+    return render(request,'users/login_register.html',context)
 
 def logoutUser(request):
     logout(request)
-    messages.error(request,'User successfully logged out')
+    messages.success(request,'User successfully logged out!')
     return(redirect('login'))
+
+def registerUser(request):
+    page='register'
+    form=customUserCreationForm()
+    if request.method=="POST":
+        form=customUserCreationForm(request.POST)
+        print("inpost")
+        if form.is_valid():
+            user=form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            print("useradded")
+            messages.success(request,"User account created!")
+
+            login(request,user)
+            return redirect('profiles')
+        else:
+            messages.error(request,"Error occurred during registration")
+    context={'page':page,'form':form}
+    return render(request,'users/login_register.html',context)
 
 def profiles(request):
     profiles=Profile.objects.all()
