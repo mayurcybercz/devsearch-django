@@ -3,13 +3,16 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Project
 from .forms import ProjectForm
-from .utils import searchProjects
+from .utils import searchProjects,paginateProjects
 
 
 
 def projects(request):
+    #search projects
     projects,search_query=searchProjects(request)
-    context={'projects':projects,'search_query':search_query,}
+    #paginate projects
+    custom_range,projects=paginateProjects(request,projects,results=6)
+    context={'projects':projects,'search_query':search_query,'custom_range':custom_range}
     return render(request,'projects/projects.html',context)
 
 def project(request,pk):
@@ -28,6 +31,7 @@ def createProject(request):
             project=form.save(commit=False)
             project.owner=profile
             project.save()
+            form.save_m2m() # save many-to-many data i.e tags
             return redirect('account')
     context={'form': form}
     return render(request,'projects/project_form.html',context)
