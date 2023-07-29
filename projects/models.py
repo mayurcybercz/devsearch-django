@@ -23,7 +23,6 @@ class Project(models.Model):
     class Meta:
         ordering=['-vote_ratio','-vote_total','title']
 
-    #
     @property
     def reviewers(self):
         #list of ids of all reviewers
