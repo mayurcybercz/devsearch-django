@@ -29,8 +29,8 @@ for (let i = 0; tags.length > i; i++) {
         let tagId = e.target.dataset.tag
         let projectId = e.target.dataset.project
 
-        console.log('TAG ID:', tagId)
-        console.log('PROJECT ID:', projectId)
+        // console.log('TAG ID:', tagId)
+        // console.log('PROJECT ID:', projectId)
 
         fetch('http://localhost:8000/api/remove-tag/', {
             method: 'DELETE',
@@ -46,3 +46,5 @@ for (let i = 0; tags.length > i; i++) {
 
     })
 }
+
+// add error handling to event listeners
