@@ -3,11 +3,25 @@
 
 Django project for Devs networking and sharing projects.
 
-Features:
+## Features:
 
-Deployment:
+Create and update account
+Add and update projects
+Add project reviews
+Messaging Users and Inbox
+Mailing Integration
+API endpoints to access and vote projects
 
-Project link:
 
-Preview:
+## Deployment:
+
+
+
+## Project link:
+
+
+
+## Preview:
+
+
 

@@ -21,7 +21,8 @@ class ProjectSerializer(serializers.ModelSerializer):
     #nested serializers
     owner=ProfileSerializer(many=False)
     tags=TagSerializer(many=True)
-    # add reviews for project
+    # reviews set not in Project model
+    # add reviews for project using methodfield
     reviews=serializers.SerializerMethodField()
 
     class Meta:

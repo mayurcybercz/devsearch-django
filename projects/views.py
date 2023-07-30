@@ -38,6 +38,7 @@ def createProject(request):
     profile=request.user.profile
     form = ProjectForm()
     if request.method == 'POST':
+        # to handle new form input for tags
         newtags=request.POST.get('newtags').replace(',',' ').split()
         form=ProjectForm(request.POST,request.FILES)
         if form.is_valid():
@@ -58,6 +59,7 @@ def updateProject(request,pk):
     project=profile.project_set.get(id=pk)
     form = ProjectForm(instance=project)
     if request.method == 'POST':
+        # to handle tags in new form field
         newtags=request.POST.get('newtags').replace(',',' ').split()
 
         form=ProjectForm(request.POST,request.FILES,instance=project)
@@ -67,6 +69,7 @@ def updateProject(request,pk):
                 tag,created=Tag.objects.get_or_create(name=tag)
                 project.tags.add(tag)
             return redirect('account')
+        #need to pass project in context for js eventlistener to make changes
     context={'form': form,'project':project}
     return render(request,'projects/project_form.html',context)
 

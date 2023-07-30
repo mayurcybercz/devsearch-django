@@ -177,7 +177,11 @@ USE_TZ = True
 
 #to make API allow all origins/domains
 CORS_ALLOW_ALL_ORIGINS=True
-
+# or specify domains if wanted limited domains
+# CORS_ALLOWED_ORIGINS = [
+#     "linktoapifrontend",
+#     "any_other_domain",
+# ]
 
 #email backend settings
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'

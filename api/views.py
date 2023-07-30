@@ -50,6 +50,9 @@ def projectVote(request,pk):
     serializer=ProjectSerializer(project,many=False)
     return Response(serializer.data)
 
+
+# this api endpoint is to access from out backend application only
+# to remove tag (bug-fix)
 @api_view(['DELETE'])
 def removeTag(request):
     tagId=request.data['tag']

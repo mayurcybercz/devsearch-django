@@ -4,7 +4,7 @@ from users.models import Profile
 # Create your models here.
 
 class Project(models.Model):
-    owner=models.ForeignKey(Profile,null=True, blank=True,on_delete=models.CASCADE)
+    owner=models.ForeignKey(Profile,null=True, blank=True,on_delete=models.CASCADE) #when an owner deleted, projects deleted
     title=models.CharField(max_length=200)
     description=models.TextField(null=True,blank=True)
     featured_image=models.ImageField(null=True,blank=True,default='default.jpeg')

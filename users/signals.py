@@ -20,6 +20,7 @@ def createProfile(sender,instance,created,**kwargs):
 
         subject='Welcome to DevSearch'
         message='We are glad you are here ' + str(user.first_name) +'!'
+        # change the message with Mailchimp welcome template
 
         send_mail(
             subject,
